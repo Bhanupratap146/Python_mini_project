@@ -1,15 +1,15 @@
-from tkinter import *
-import requests
+from tkinter import * #provides tool for building GUI
+import requests # handle HTTP requests to fetch weather from openweatherAPI
 import json
-import datetime
-import os
-from PIL import ImageTk, Image
+import datetime # format sunrise and sunset time from API
+import os #manages file path for images
+from PIL import ImageTk, Image #processes images
 
 # Initialize Tkinter
 root = Tk()
-root.title("Weather App")
-root.geometry("450x700")
-root['background'] = "white"
+root.title("Weather App") #set title
+root.geometry("450x700") #size of window
+root['background'] = "white" #background color
 
 # Add your OpenWeatherMap API key here
 api_key = "e664097df37cf78483647531b3de9390"
@@ -32,7 +32,7 @@ try:
 except Exception as e:
     print(f"Error loading logo: {e}")
 
-# Date and Time
+# Date and Time labels
 dt = datetime.datetime.now()
 date = Label(root, text=dt.strftime('%A'), bg='white', font=("bold", 15))
 date.place(x=10, y=120)
@@ -74,7 +74,8 @@ try:
     search_button.image = search_img  # Prevent garbage collection
 except Exception as e:
     print(f"Error loading search button image: {e}")
-
+    
+# fetches weather data from API
 def fetch_weather():
     city = city_name_var.get()
     if not city:
@@ -115,7 +116,7 @@ def fetch_weather():
     except KeyError:
         print("Error: Invalid city name or API response.")
 
-# Labels for Data
+# Labels for Data/ display weather data
 lable_citi = Label(root, text="City: ...", bg='white', font=("bold", 15))
 lable_citi.place(x=10, y=340)
 lable_country = Label(root, text="Country: ...", bg='white', font=("bold", 15))
